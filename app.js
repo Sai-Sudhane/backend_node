@@ -9,10 +9,7 @@ require('dotenv').config();
 app.use(express.json());
 app.use(cors());
 
-mongoose.connect(process.env.MONGODB_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-});
+mongoose.connect(process.env.MONGODB_URI);
 
 const registerRoutes = require('./routes/studentRoute');
 const loginRoutes = require('./routes/loginRoute');
@@ -21,7 +18,5 @@ app.use('/register', registerRoutes);
 app.use('/login', loginRoutes);
 
 
-const port = process.env.PORT
-app.listen(port, () => {
-    console.log(`Server is running on port ${port}`);
-});
+const port = process.env.PORT || 5000;
+app.listen(port);
